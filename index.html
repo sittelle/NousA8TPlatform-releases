@@ -104,13 +104,6 @@ a:hover{text-decoration:underline}
 
 h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
 
-.ref{
-  background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:14px 18px;margin-bottom:24px;font-size:14px;color:var(--muted);
-  display:flex;flex-direction:column;gap:6px;
-}
-.ref b{color:var(--fg)}
-
 /* Flow: one plain numbered list, no stage cards */
 .flow{counter-reset:step;list-style:none;margin:0 0 28px;padding:0;display:flex;flex-direction:column;gap:14px}
 .flow>li{
@@ -136,22 +129,20 @@ h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
 
   <h1>Adopting a NOUS A8T</h1>
 
-  <div class="ref">
-    <div>Download <b><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></b> (step 2) and <b><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TChargeGuard.bin">NousA8TChargeGuard.bin</a></b> (step 5).</div>
-    <div>If no AP is listed on the device: AP <b>192.168.4.1</b>, password <b>NousA8TAdopted</b>.</div>
-  </div>
-
   <ol class="flow">
-    <li>Plug in the socket while it's still running Tasmota. Connect it to your Wi-Fi client (optional, but recommended).</li>
-    <li>On Tasmota's own Firmware Upgrade page (<code>http://&lt;plug-ip&gt;/up</code>), upload <code>NousA8TAdoption.bin</code>.</li>
-    <li>Stay on the page until it shows a decision to make, then choose:
+    <li>
+      Plug in the NOUS A8T socket while it's running Tasmota. Connect it to your Wi-Fi client (optional, but recommended).
+      If it can't connect, or no Wi-Fi client is set up, it opens its own access point, <code>NousA8TRescue-&lt;id&gt;</code>, password <code>NousA8TAdopted</code>.
+    </li>
+    <li>Open Tasmota's Firmware Upgrade page (<code>http://&lt;plug-ip&gt;/up</code>) and upload <code><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></code>.</li>
+    <li>The device reboots into the adoption firmware and presents a choice:
       <ul class="branch">
         <li><span class="label">Overwrite</span> &mdash; continue to step 4.</li>
         <li><span class="label">Recovery</span> &mdash; decide to recover to Tasmota instead; upload your own <code>tasmota32.bin</code> (get this from NOUS yourself); wait for Tasmota to come back up.</li>
       </ul>
     </li>
     <li>On overwrite: wait for Rescue to come up.</li>
-    <li>On Rescue's own page, install the Charge Guard app by uploading <code>NousA8TChargeGuard.bin</code>.</li>
+    <li>On Rescue's own page, install the Charge Guard app by uploading <code><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TChargeGuard.bin">NousA8TChargeGuard.bin</a></code>.</li>
     <li>Done.</li>
   </ol>
 
