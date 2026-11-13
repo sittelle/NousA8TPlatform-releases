@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>NOUS A8T Adoption Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a numbered procedure (Setup -> Stage 1-3) down a single column,
+   each stage a bordered card with a large stage number in the gutter;
+   a sticky quick-reference strip of literal values (addresses, phrases)
+   readable at a glance on a phone next to the device. */
+:root{
+  --bg:#f3f1ec;
+  --surface:#ffffff;
+  --surface-2:#eae7df;
+  --fg:#211f1a;
+  --muted:#6b6557;
+  --border:#ddd8cc;
+  --accent:#0f7a6b;
+  --accent-ink:#ffffff;
+  --warn-bg:#fdf0d9;
+  --warn-ink:#7a4c05;
+  --warn-border:#e8c374;
+  --danger-bg:#fbe9e6;
+  --danger-ink:#8a2a1c;
+  --danger-border:#e8a799;
+  --ok-bg:#e7f3ed;
+  --ok-ink:#0d5c42;
+  --ok-border:#a9d6c0;
+  --font-display:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;
+  --font-body:'Inter',ui-sans-serif,system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,'SF Mono',Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#191a17;
+    --surface:#232420;
+    --surface-2:#2b2c27;
+    --fg:#eeece4;
+    --muted:#a39d8c;
+    --border:#3a3b34;
+    --accent:#3fcab2;
+    --accent-ink:#0d2520;
+    --warn-bg:#2e2512;
+    --warn-ink:#f0c570;
+    --warn-border:#5c4a1f;
+    --danger-bg:#301c18;
+    --danger-ink:#f5b2a2;
+    --danger-border:#5c3129;
+    --ok-bg:#122b22;
+    --ok-ink:#8fe0bf;
+    --ok-border:#20533f;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#191a17;
+  --surface:#232420;
+  --surface-2:#2b2c27;
+  --fg:#eeece4;
+  --muted:#a39d8c;
+  --border:#3a3b34;
+  --accent:#3fcab2;
+  --accent-ink:#0d2520;
+  --warn-bg:#2e2512;
+  --warn-ink:#f0c570;
+  --warn-border:#5c4a1f;
+  --danger-bg:#301c18;
+  --danger-ink:#f5b2a2;
+  --danger-border:#5c3129;
+  --ok-bg:#122b22;
+  --ok-ink:#8fe0bf;
+  --ok-border:#20533f;
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font-family:var(--font-body);
+  line-height:1.55;
+  padding-left:max(16px, env(safe-area-inset-left,0px));
+  padding-right:max(16px, env(safe-area-inset-right,0px));
+}
+.wrap{max-width:720px;margin:0 auto;padding-block:28px 64px}
+
+h1,h2,h3{font-family:var(--font-display);text-wrap:balance;margin:0;letter-spacing:-0.01em}
+code,.mono{font-family:var(--font-mono);font-size:0.92em}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.tag{
+  display:inline-flex;align-items:center;gap:.4em;
+  font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent);background:color-mix(in srgb, var(--accent) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  border-radius:999px;padding:3px 10px;
+}
+
+header.top{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+header.top .eyebrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+header.top h1{font-size:clamp(28px,6vw,38px)}
+header.top p{margin:0;color:var(--muted);font-size:15px;max-width:60ch}
+
+/* Quick reference */
+.quickref{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:16px 18px;margin-bottom:32px;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 22px;
+}
+.quickref .item{display:flex;flex-direction:column;gap:3px;min-width:0}
+.quickref .item .k{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.quickref .item .v{font-family:var(--font-mono);font-size:14px;font-weight:600;word-break:break-word}
+
+/* Manifest */
+.manifest{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  padding:18px 20px;margin-bottom:36px;
+}
+.manifest h2{font-size:17px;margin-bottom:4px}
+.manifest .sub{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+.filelist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.filelist li{
+  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  padding-bottom:10px;border-bottom:1px solid var(--border);
+}
+.filelist li:last-child{border-bottom:none;padding-bottom:0}
+.filelist .name{font-family:var(--font-mono);font-size:13.5px;font-weight:600;white-space:nowrap}
+.filelist .role{color:var(--muted);font-size:13.5px;min-width:0}
+
+/* Stages */
+.stage{position:relative;display:flex;gap:18px;margin-bottom:8px}
+.stage .num{
+  flex:none;width:40px;height:40px;border-radius:10px;
+  background:var(--surface-2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--accent);
+}
+.stage .rail{
+  position:absolute;left:19px;top:40px;bottom:-28px;width:2px;
+  background:var(--border);
+}
+.stage:last-of-type .rail{display:none}
+.stage .body{flex:1;min-width:0;padding-bottom:34px}
+.stage h2{font-size:20px;margin-bottom:4px}
+.stage .stage-sub{color:var(--muted);font-size:14px;margin-bottom:14px}
+
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.steps li{
+  display:flex;gap:10px;align-items:flex-start;
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:12px 14px;font-size:14.5px;
+}
+.steps li .dot{
+  flex:none;width:7px;height:7px;border-radius:50%;background:var(--accent);
+  margin-top:7px;
+}
+.steps li .txt{min-width:0}
+.steps li .txt b{font-weight:600}
+
+.callout{
+  border-radius:10px;border:1px solid var(--border);padding:12px 14px;
+  font-size:14px;margin-top:12px;display:flex;gap:10px;align-items:flex-start;
+}
+.callout .mark{font-family:var(--font-display);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;flex:none;padding-top:1px}
+.callout.warn{background:var(--warn-bg);color:var(--warn-ink);border-color:var(--warn-border)}
+.callout.danger{background:var(--danger-bg);color:var(--danger-ink);border-color:var(--danger-border)}
+.callout.ok{background:var(--ok-bg);color:var(--ok-ink);border-color:var(--ok-border)}
+
+.shot{
+  background:var(--surface-2);border:1px solid var(--border);border-radius:8px;
+  padding:9px 12px;font-family:var(--font-mono);font-size:13px;
+  overflow-x:auto;white-space:pre;margin-top:2px;color:var(--muted);
+}
+
+footer.end{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
+footer.end p{margin:0 0 6px}
+
+@media (max-width:480px){
+  .stage{gap:12px}
+  .stage .num{width:34px;height:34px;font-size:14px}
+  .stage .rail{left:16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <div class="eyebrow">
+      <span class="tag">Platform release 2.4.0</span>
+      <span class="tag">Browser only, no console</span>
+    </div>
+    <h1>Adopting a NOUS A8T</h1>
+    <p>From a factory plug running Tasmota, to Rescue, to a working Charge Guard install. Every step happens in a browser &mdash; Tasmota's own page, then the device's own pages after that.</p>
+  </header>
+
+  <div class="quickref">
+    <div class="item"><span class="k">AP address</span><span class="v">192.168.4.1</span></div>
+    <div class="item"><span class="k">AP password</span><span class="v">NousA8TAdopted</span></div>
+    <div class="item"><span class="k">Never run</span><span class="v">idf.py flash</span></div>
+  </div>
+
+  <div class="manifest">
+    <h2>What you need</h2>
+    <div class="sub">Two files, downloaded from the latest release. Nothing else to install on this computer.</div>
+    <ul class="filelist">
+      <li><span class="name"><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></span><span class="role">Upload this through Tasmota's own page in Stage 1. One-time use per device.</span></li>
+      <li><span class="name"><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TChargeGuard.bin">NousA8TChargeGuard.bin</a></span><span class="role">Upload this through Rescue's own page in Stage 3.</span></li>
+    </ul>
+    <div class="sub" style="margin-top:10px">Also on the <a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest">releases page</a>: the Rescue and Bootloader images, for reference, and the whole bundle as one zip.</div>
+  </div>
+
+  <!-- Setup -->
+  <div class="stage">
+    <div class="num">0</div>
+    <div class="rail"></div>
+    <div class="body">
+      <h2>Before you touch the plug</h2>
+      <div class="stage-sub">Thirty seconds now saves a UART recovery session later.</div>
+      <ul class="steps">
+        <li><span class="dot"></span><span class="txt">You can reach the plug's IP address in a browser, on this computer or phone.</span></li>
+        <li><span class="dot"></span><span class="txt">The plug is on stable mains power, with <b>nothing plugged into the relay</b> &mdash; a load that loses power mid-write is the one thing you can't undo.</span></li>
+        <li><span class="dot"></span><span class="txt">You know the plug's current LAN address (check your router's device list, or Tasmota's own Information page).</span></li>
+      </ul>
+      <div class="callout warn"><span class="mark">One shot</span>Every upload below is deliberately a single attempt. If a result looks uncertain, stop and read it again before trying a second time &mdash; don't retry blind.</div>
+    </div>
+  </div>
+
+  <!-- Stage 1 -->
+  <div class="stage">
+    <div class="num">1</div>
+    <div class="rail"></div>
+    <div class="body">
+      <h2>Adoption</h2>
+      <div class="stage-sub">Turns stock Tasmota into our own Rescue platform &mdash; two pages, no files to run.</div>
+      <ul class="steps">
+        <li><span class="dot"></span><span class="txt">Open <code>http://&lt;plug-ip&gt;/up</code> &mdash; Tasmota's own Firmware Upgrade page.</span></li>
+        <li><span class="dot"></span><span class="txt">Choose <code>NousA8TAdoption.bin</code> and click <b>Upgrade</b>. Tasmota switches to Safe Boot and back on its own; just wait.</span></li>
+        <li><span class="dot"></span><span class="txt">The device restarts running Adoption instead of Tasmota. If it saved working Wi-Fi, it often reappears at the <b>same address</b>. If not, join the <code>NousA8TRescue-&lt;id&gt;</code> network (password <code>NousA8TAdopted</code> &mdash; the same name and password Rescue itself will keep using later) and open <code>http://192.168.4.1</code> instead.</span></li>
+        <li><span class="dot"></span><span class="txt">Adoption's own page (in German) checks itself and shows live progress across four checks: Hardware, Software, Vorbereitung (preparation), Installation. Once the first three pass, it shows Rescue's Wi-Fi AP name/password and two buttons.</span></li>
+        <li><span class="dot"></span><span class="txt">If Tasmota already had working station Wi-Fi configured and reachable, Adoption carries that same, already-validated network straight into Rescue &mdash; it comes up already connected, with no onboarding AP needed at all. The AP above remains as a fallback regardless.</span></li>
+        <li><span class="dot"></span><span class="txt">Click <b>Tasmota &uuml;berschreiben</b> ("Overwrite Tasmota") to proceed. The device restarts into Rescue.</span></li>
+      </ul>
+      <div class="callout danger"><span class="mark">Point of no return</span>Clicking <b>Tasmota &uuml;berschreiben</b> restarts the device into Rescue. The original Tasmota firmware is gone after this.</div>
+      <div class="callout ok"><span class="mark">If it fails instead</span>Adoption checks the device before writing anything permanent, and never overwrites itself. If a check fails, its page shows what failed and offers a single button instead: <b>Tasmota wiederherstellen</b> ("Restore Tasmota") &mdash; this writes nothing; it just switches the device back to the still-genuine factory Tasmota safeboot and restarts into it. From there, use <b>that page's own</b> "Firmware Upgrade" to upload a real <code>tasmota32.bin</code> (get it from NOUS) and put the plug back exactly as it was.</div>
+    </div>
+  </div>
+
+  <!-- Stage 2 -->
+  <div class="stage">
+    <div class="num">2</div>
+    <div class="rail"></div>
+    <div class="body">
+      <h2>Rescue is live</h2>
+      <div class="stage-sub">Already verified as part of confirming Adoption. Main &mdash; where the App goes &mdash; is still intentionally empty.</div>
+      <ul class="steps">
+        <li><span class="dot"></span><span class="txt">If Tasmota's station Wi-Fi carried over, Rescue is already on your network &mdash; check your router's device list or try the same address the plug had before.</span></li>
+        <li><span class="dot"></span><span class="txt">Otherwise, join <code>NousA8TRescue-&lt;id&gt;</code> with password <code>NousA8TAdopted</code> (the fixed default from the quick reference above).</span></li>
+        <li><span class="dot"></span><span class="txt">Open Rescue's address in a browser. Its own page shows device status directly &mdash; this is where Stage 3 happens too.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Stage 3 -->
+  <div class="stage">
+    <div class="num">3</div>
+    <div class="body">
+      <h2>Install Charge Guard</h2>
+      <div class="stage-sub">Writes the App into Main, from Rescue's own upload form. Rescue itself stays protected underneath it.</div>
+      <ul class="steps">
+        <li><span class="dot"></span><span class="txt">On Rescue's page, open the firmware update section and choose <code>NousA8TChargeGuard.bin</code>.</span></li>
+        <li><span class="dot"></span><span class="txt">Start the upload. Rescue reads the file back from flash to confirm it wrote correctly before offering to start it.</span></li>
+        <li><span class="dot"></span><span class="txt">Commit from the same page. The App takes over the network connection next, so Rescue's own page will stop responding here &mdash; that's the expected sign it worked.</span></li>
+      </ul>
+      <div class="callout ok"><span class="mark">Done</span>The plug is now running Charge Guard, with Rescue sitting underneath ready for the next update.</div>
+    </div>
+  </div>
+
+  <footer class="end">
+    <p><b>Never</b> run <code>idf.py flash</code> or a raw <code>esptool</code> write against an adopted device &mdash; only Rescue's own web interface keeps writes inside the partitions they're supposed to touch.</p>
+    <p>There's also a command-line wizard (<code>NousA8TPlatform.py</code>) inside the full release zip, for scripting this or recovering an interrupted Adoption without a browser. It's optional &mdash; everything above works without it.</p>
+  </footer>
+
+</div>
+</body>
+</html>
