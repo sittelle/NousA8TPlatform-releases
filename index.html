@@ -104,6 +104,13 @@ a:hover{text-decoration:underline}
 
 h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
 
+.notice{
+  background:var(--warn-bg);color:var(--warn-ink);border:1px solid var(--warn-border);
+  border-radius:12px;padding:12px 16px;margin-bottom:24px;font-size:14px;
+}
+.notice p{margin:0 0 6px}
+.notice p:last-child{margin-bottom:0}
+
 /* Flow: one plain numbered list, no stage cards */
 .flow{counter-reset:step;list-style:none;margin:0 0 28px;padding:0;display:flex;flex-direction:column;gap:14px}
 .flow>li{
@@ -129,10 +136,15 @@ h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
 
   <h1>Adopting a NOUS A8T</h1>
 
+  <div class="notice">
+    <p>Nothing should be plugged into the socket's outlet during this process. Keep a stable connection throughout &mdash; both to the device and, if used, from the device to your Wi-Fi.</p>
+    <p>This process can leave the device unusable if interrupted. You're doing this at your own risk; we take no responsibility for a bricked device.</p>
+  </div>
+
   <ol class="flow">
     <li>
       Plug in the NOUS A8T socket while it's running Tasmota. Connect it to your Wi-Fi client (optional, but recommended).
-      If it can't connect, or no Wi-Fi client is set up, it opens its own access point, <code>NousA8TRescue-&lt;id&gt;</code>, password <code>NousA8TAdopted</code>.
+      <br />If it can't connect, or no Wi-Fi client is set up, it opens its own access point, <code>NousA8TRescue-&lt;id&gt;</code>, password <code>NousA8TAdopted</code> during adoption
     </li>
     <li>Open Tasmota's Firmware Upgrade page (<code>http://&lt;plug-ip&gt;/up</code>) and upload <code><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></code>.</li>
     <li>The device reboots into the adoption firmware and presents a choice:
