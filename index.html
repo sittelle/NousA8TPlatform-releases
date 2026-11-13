@@ -102,36 +102,14 @@ a:hover{text-decoration:underline}
   border-radius:999px;padding:3px 10px;
 }
 
-header.top{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
-header.top .eyebrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-header.top h1{font-size:clamp(28px,6vw,38px)}
-header.top p{margin:0;color:var(--muted);font-size:15px;max-width:60ch}
+h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
 
-/* Quick reference */
-.quickref{
+.ref{
   background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:16px 18px;margin-bottom:32px;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px 22px;
+  padding:14px 18px;margin-bottom:24px;font-size:14px;color:var(--muted);
+  display:flex;flex-direction:column;gap:6px;
 }
-.quickref .item{display:flex;flex-direction:column;gap:3px;min-width:0}
-.quickref .item .k{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
-.quickref .item .v{font-family:var(--font-mono);font-size:14px;font-weight:600;word-break:break-word}
-
-/* Manifest */
-.manifest{
-  background:var(--surface);border:1px solid var(--border);border-radius:14px;
-  padding:18px 20px;margin-bottom:36px;
-}
-.manifest h2{font-size:17px;margin-bottom:4px}
-.manifest .sub{color:var(--muted);font-size:13.5px;margin-bottom:14px}
-.filelist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.filelist li{
-  display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
-  padding-bottom:10px;border-bottom:1px solid var(--border);
-}
-.filelist li:last-child{border-bottom:none;padding-bottom:0}
-.filelist .name{font-family:var(--font-mono);font-size:13.5px;font-weight:600;white-space:nowrap}
-.filelist .role{color:var(--muted);font-size:13.5px;min-width:0}
+.ref b{color:var(--fg)}
 
 /* Flow: one plain numbered list, no stage cards */
 .flow{counter-reset:step;list-style:none;margin:0 0 28px;padding:0;display:flex;flex-direction:column;gap:14px}
@@ -151,36 +129,16 @@ header.top p{margin:0;color:var(--muted);font-size:15px;max-width:60ch}
 .branch li{font-size:14px;color:var(--muted)}
 .branch li b{color:var(--fg);font-weight:600}
 .branch .label{font-family:var(--font-mono);font-size:11px;letter-spacing:.04em;color:var(--accent)}
-
-footer.end{margin-top:12px;padding-top:20px;border-top:1px solid var(--border);color:var(--muted);font-size:13px}
-footer.end p{margin:0 0 6px}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <header class="top">
-    <div class="eyebrow">
-      <span class="tag">Platform release 2.4.0</span>
-      <span class="tag">Browser only, no console</span>
-    </div>
-    <h1>Adopting a NOUS A8T</h1>
-    <p>From a factory plug running Tasmota, to Rescue, to a working Charge Guard install. Every step happens in a browser &mdash; Tasmota's own page, then the device's own pages after that.</p>
-  </header>
+  <h1>Adopting a NOUS A8T</h1>
 
-  <div class="quickref">
-    <div class="item"><span class="k">AP address</span><span class="v">192.168.4.1</span></div>
-    <div class="item"><span class="k">AP password</span><span class="v">NousA8TAdopted</span></div>
-    <div class="item"><span class="k">Never run</span><span class="v">idf.py flash</span></div>
-  </div>
-
-  <div class="manifest">
-    <h2>What you need</h2>
-    <div class="sub">Two files, downloaded from the latest release. Nothing else to install on this computer.</div>
-    <ul class="filelist">
-      <li><span class="name"><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></span><span class="role">Used in step 2.</span></li>
-      <li><span class="name"><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TChargeGuard.bin">NousA8TChargeGuard.bin</a></span><span class="role">Used in step 5.</span></li>
-    </ul>
+  <div class="ref">
+    <div>Download <b><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></b> (step 2) and <b><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TChargeGuard.bin">NousA8TChargeGuard.bin</a></b> (step 5).</div>
+    <div>If no AP is listed on the device: AP <b>192.168.4.1</b>, password <b>NousA8TAdopted</b>.</div>
   </div>
 
   <ol class="flow">
@@ -196,10 +154,6 @@ footer.end p{margin:0 0 6px}
     <li>On Rescue's own page, install the Charge Guard app by uploading <code>NousA8TChargeGuard.bin</code>.</li>
     <li>Done.</li>
   </ol>
-
-  <footer class="end">
-    <p><b>Never</b> run <code>idf.py flash</code> or a raw <code>esptool</code> write against an adopted device &mdash; only Rescue's own web interface keeps writes inside the partitions they're supposed to touch.</p>
-  </footer>
 
 </div>
 </body>
