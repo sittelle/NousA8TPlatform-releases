@@ -148,6 +148,9 @@ h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
 
   <div id="content-en" lang="en-GB">
     <h1>Adopting a NOUS A8T</h1>
+    <p>Relaywright is an independent, unofficial, community-built platform. It
+    is not affiliated with, endorsed by, or supported by NOUS, Bosch, or any
+    other manufacturer named here.</p>
 
     <div class="notice">
       <p>Nothing should be plugged into the socket's outlet during this process. Ensure the device is connected to a stable power source throughout the process and has a stable network connection.</p>
@@ -157,9 +160,9 @@ h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
     <ol class="flow">
       <li>
         Plug in the NOUS A8T socket while it's running Tasmota. Connect it to your Wi-Fi client (optional, but recommended).
-        <br />If it can't connect, or no Wi-Fi client is set up, it opens its own access point, <code>NousA8TRescue-&lt;id&gt;</code>, password <code>NousA8TAdopted</code> during adoption
+        <br />If it can't connect, or no Wi-Fi client is set up, it opens its own access point, <code>RelaywrightRescue-&lt;id&gt;</code>, password <code>RelaywrightAdopted</code> during adoption
       </li>
-      <li>Open Tasmota's Firmware Upgrade page (<code>http://&lt;plug-ip&gt;/up</code>) and upload <code><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></code>.</li>
+      <li>Open Tasmota's Firmware Upgrade page (<code>http://&lt;plug-ip&gt;/up</code>) and upload <code><a href="https://github.com/sittelle/Relaywright-releases/releases/latest/download/RelaywrightAdoption.bin">RelaywrightAdoption.bin</a></code>.</li>
       <li>The device reboots into the adoption firmware and presents a choice:
         <ul class="branch">
           <li><span class="label">Overwrite</span> &mdash; continue to step 4.</li>
@@ -167,15 +170,18 @@ h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
         </ul>
       </li>
       <li>On overwrite: wait for Rescue to come up.</li>
-      <li>On Rescue's own page, install the Charge Guard app by uploading <code><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TChargeGuard.bin">NousA8TChargeGuard.bin</a></code>.</li>
+      <li>On Rescue's own page, install the eBike Charge Guard app by uploading <code><a href="https://github.com/sittelle/Relaywright-releases/releases/latest/download/EBikeChargeGuard.bin">EBikeChargeGuard.bin</a></code>.</li>
       <li>Done.</li>
     </ol>
 
-    <div class="releases">All releases: <a href="https://github.com/sittelle/NousA8TPlatform-releases/releases">github.com/sittelle/NousA8TPlatform-releases/releases</a></div>
+    <div class="releases">All releases: <a href="https://github.com/sittelle/Relaywright-releases/releases">github.com/sittelle/Relaywright-releases/releases</a></div>
   </div>
 
   <div id="content-de" lang="de-DE" hidden>
     <h1>NOUS A8T adoptieren</h1>
+    <p>Relaywright ist eine unabh&auml;ngige, inoffizielle Community-Plattform.
+    Sie steht in keiner Verbindung zu NOUS, Bosch oder anderen hier genannten
+    Herstellern und wird von diesen weder unterst&uuml;tzt noch gebilligt.</p>
 
     <div class="notice">
       <p>W&auml;hrend dieses Vorgangs darf nichts in die Steckdose des Sockets eingesteckt sein. Achte darauf, dass das Ger&auml;t durchgehend stabil mit Strom versorgt ist und eine stabile Netzwerkverbindung hat.</p>
@@ -185,9 +191,9 @@ h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
     <ol class="flow">
       <li>
         Stecke den NOUS A8T Socket ein, w&auml;hrend er noch Tasmota ausf&uuml;hrt. Verbinde ihn mit deinem WLAN-Client (optional, aber empfohlen).
-        <br />Falls keine Verbindung m&ouml;glich ist oder kein WLAN-Client eingerichtet ist, &ouml;ffnet das Ger&auml;t w&auml;hrend der Adoption einen eigenen Access Point, <code>NousA8TRescue-&lt;id&gt;</code>, Passwort <code>NousA8TAdopted</code>.
+        <br />Falls keine Verbindung m&ouml;glich ist oder kein WLAN-Client eingerichtet ist, &ouml;ffnet das Ger&auml;t w&auml;hrend der Adoption einen eigenen Access Point, <code>RelaywrightRescue-&lt;id&gt;</code>, Passwort <code>RelaywrightAdopted</code>.
       </li>
-      <li>&Ouml;ffne Tasmotas Firmware-Upgrade-Seite (<code>http://&lt;plug-ip&gt;/up</code>) und lade <code><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TAdoption.bin">NousA8TAdoption.bin</a></code> hoch.</li>
+      <li>&Ouml;ffne Tasmotas Firmware-Upgrade-Seite (<code>http://&lt;plug-ip&gt;/up</code>) und lade <code><a href="https://github.com/sittelle/Relaywright-releases/releases/latest/download/RelaywrightAdoption.bin">RelaywrightAdoption.bin</a></code> hoch.</li>
       <li>Das Ger&auml;t startet neu in die Adoption-Firmware und zeigt eine Entscheidung:
         <ul class="branch">
           <li><span class="label">&Uuml;berschreiben</span> &mdash; weiter zu Schritt 4.</li>
@@ -195,11 +201,11 @@ h1{font-size:clamp(26px,6vw,34px);margin-bottom:18px}
         </ul>
       </li>
       <li>Bei &Uuml;berschreiben: warten, bis Rescue erreichbar ist.</li>
-      <li>Auf Rescues eigener Seite die Charge-Guard-App installieren, indem du <code><a href="https://github.com/sittelle/NousA8TPlatform-releases/releases/latest/download/NousA8TChargeGuard.bin">NousA8TChargeGuard.bin</a></code> hochl&auml;dst.</li>
+      <li>Auf Rescues eigener Seite die Charge-Guard-App installieren, indem du <code><a href="https://github.com/sittelle/Relaywright-releases/releases/latest/download/EBikeChargeGuard.bin">EBikeChargeGuard.bin</a></code> hochl&auml;dst.</li>
       <li>Fertig.</li>
     </ol>
 
-    <div class="releases">Alle Releases: <a href="https://github.com/sittelle/NousA8TPlatform-releases/releases">github.com/sittelle/NousA8TPlatform-releases/releases</a></div>
+    <div class="releases">Alle Releases: <a href="https://github.com/sittelle/Relaywright-releases/releases">github.com/sittelle/Relaywright-releases/releases</a></div>
   </div>
 
 </div>
@@ -210,14 +216,14 @@ function setLang(lang){
   document.querySelectorAll('.langswitch button').forEach(function(b){
     b.classList.toggle('active', b.dataset.lang === lang);
   });
-  try{localStorage.setItem('nousA8TGuideLang', lang);}catch(e){}
+  try{localStorage.setItem('relaywrightGuideLang', lang);}catch(e){}
 }
 document.querySelectorAll('.langswitch button').forEach(function(b){
   b.addEventListener('click', function(){setLang(b.dataset.lang);});
 });
 var initial = 'en';
 try{
-  var saved = localStorage.getItem('nousA8TGuideLang');
+  var saved = localStorage.getItem('relaywrightGuideLang');
   if(saved === 'de' || saved === 'en') initial = saved;
   else if(navigator.language && navigator.language.toLowerCase().indexOf('de') === 0) initial = 'de';
 }catch(e){
